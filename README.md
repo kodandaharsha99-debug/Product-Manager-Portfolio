@@ -794,4 +794,4 @@
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/harsha-iragavarapu-a46795205/">LinkedIn</a>
     <a href="https://drive.google.com/file/d/1yQipn42GxBGQPeFOb3wxpg5jmasm0VDp/view?usp=drive_link">Resume</a>
-    <!-- <a href="/cdn-cgi/l/email-protection#deb -->
+    <a href="iragavarapu.harsha99@yahoo.com">email to</a>
