@@ -589,7 +589,7 @@
     <nav class="header-links">
       <a href="https://www.linkedin.com/in/harsha-iragavarapu-a46795205/">LinkedIn</a>
       <a href="https://drive.google.com/file/d/1yQipn42GxBGQPeFOb3wxpg5jmasm0VDp/view?usp=drive_link">Resume PDF</a>
-      <a href="/cdn-cgi/l/email-protection#3c554e5d5b5d4a5d4e5d4c4912545d4e4f545d05057c455d545353125f5351">Email</a>
+      <a href="mailto:iragavarapu.harsha99@yahoo.com">Email</a>
     </nav>
   </div>
 </header>
