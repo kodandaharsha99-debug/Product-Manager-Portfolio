@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Product Portfolio — Senior PM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #111111;
+    --ink-muted: #5a5a5a;
+    --ink-faint: #9a9a9a;
+    --bg: #f8f7f4;
+    --bg-card: #ffffff;
+    --accent: #1a4ed8;
+    --accent-light: #e8eeff;
+    --green: #14532d;
+    --green-light: #dcfce7;
+    --border: #e5e5e0;
+    --rule: #d4d4cc;
+    --max: 860px;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Layout ── */
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(248, 247, 244, 0.96);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+  }
+  header .page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .header-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .header-links a {
+    display: inline-block;
+    padding: 5px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: border-color .2s, color .2s, background .2s;
+    letter-spacing: 0.02em;
+  }
+  .header-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 640px;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 560px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .tag {
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 4px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--ink-muted);
+  }
+
+  /* ── Section Structure ── */
+  .section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .section-num {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ── Case Study Cards ── */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .ps-block {
+    background: var(--bg-card);
+    padding: 28px 30px;
+  }
+  .ps-block h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .ps-block p {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+  .ps-block.solution { background: #fafafa; }
+
+  /* ── Metrics Bar ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .metric-cell {
+    background: var(--bg-card);
+    padding: 24px 26px;
+    text-align: left;
+  }
+  .metric-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    line-height: 1.4;
+  }
+
+  /* ── Security Section ── */
+  .security-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 30px 32px;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+  .intervention-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .intervention-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 26px;
+  }
+  .intervention-card h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .intervention-card p {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .result-banner {
+    background: var(--green-light);
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 18px 26px;
+    font-size: 0.88rem;
+    color: var(--green);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .result-banner::before {
+    content: "✓";
+    width: 22px; height: 22px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  /* ── Philosophy ── */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .phil-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phil-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+  }
+  .phil-card h3 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .phil-card p {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* ── Sprint ── */
+  .sprint-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+  }
+  .sprint-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .sprint-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 26px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .sprint-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .sprint-item h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .sprint-item p {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  .arsenal-card {
+    background: var(--ink);
+    border-radius: 10px;
+    padding: 26px;
+    color: white;
+  }
+  .arsenal-card h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+  .arsenal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .arsenal-list li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .arsenal-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  footer p {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+  }
+  footer .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+  footer .footer-links a {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  footer .footer-links a:hover { color: var(--accent); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp .5s ease both; }
+  .hero h1      { animation: fadeUp .55s .07s ease both; }
+  .hero-bio     { animation: fadeUp .55s .14s ease both; }
+  .hero-tags    { animation: fadeUp .55s .2s ease both; }
+
+  /* ── Flow Diagram ── */
+  .flow-wrap {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    align-items: start;
+  }
+  .flow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+  .flow-col--before { background: #fff5f5; border: 1px solid #fecaca; }
+  .flow-col--after  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .flow-col-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .flow-col-label--bad  { background: #fee2e2; color: #991b1b; }
+  .flow-col-label--good { background: #dcfce7; color: #14532d; }
+  .flow-node {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: center;
+    width: 100%;
+    line-height: 1.4;
+  }
+  .flow-node span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+  .flow-node--start   { background: var(--ink); color: white; border-color: var(--ink); font-weight: 600; }
+  .flow-node--danger  { background: #fef2f2; border-color: #fca5a5; color: #991b1b; font-weight: 600; }
+  .flow-node--bad-end { background: #fee2e2; border-color: #f87171; color: #7f1d1d; font-weight: 600; }
+  .flow-node--gate    { background: #eff6ff; border-color: #93c5fd; color: #1e40af; font-weight: 600; }
+  .flow-node--log     { background: #fefce8; border-color: #fde68a; color: #78350f; }
+  .flow-node--deny    { background: #fef2f2; border-color: #fca5a5; color: #7f1d1d; font-size: 0.78rem; }
+  .flow-node--good-end{ background: #dcfce7; border-color: #4ade80; color: #14532d; font-weight: 600; }
+  .flow-arrow {
+    font-size: 1rem;
+    color: var(--ink-faint);
+    margin: 6px 0;
+    line-height: 1;
+  }
+  .flow-arrow--branch {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  .flow-diamond {
+    width: 80px; height: 80px;
+    background: white;
+    border: 1.5px solid #86efac;
+    transform: rotate(45deg);
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    margin: 8px 0;
+    flex-shrink: 0;
+  }
+  .flow-diamond span {
+    transform: rotate(-45deg);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--green);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .flow-branch-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
+  }
+  .flow-branch-no, .flow-branch-yes {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .flow-branch-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .flow-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 60px;
+    gap: 6px;
+  }
+  .flow-divider-line {
+    width: 1px; height: 60px;
+    background: var(--rule);
+  }
+  .flow-divider-badge {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ink-faint);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 620px) {
+    .ps-grid, .metrics, .intervention-grid,
+    .philosophy-grid, .sprint-grid {
+      grid-template-columns: 1fr;
+    }
+    .flow-wrap {
+      grid-template-columns: 1fr;
+    }
+    .flow-divider { flex-direction: row; padding-top: 0; padding: 12px 0; }
+    .flow-divider-line { width: 60px; height: 1px; }
+    .hero { padding: 52px 0 48px; }
+    .section { padding: 52px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ HEADER ═══ -->
+<header>
+  <div class="page">
+    <span class="header-name">Product Portfolio</span>
+    <nav class="header-links">
+      <a href="https://www.linkedin.com/in/harsha-iragavarapu-a46795205/">LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1yQipn42GxBGQPeFOb3wxpg5jmasm0VDp/view?usp=drive_link">Resume PDF</a>
+      <a href="mailto:iragavarapu.harsha99@yahoo.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════ HERO ══════ -->
+<section class="hero">
+  <div class="page">
+    <p class="hero-eyebrow">Senior Product Manager · 3.7+ Years</p>
+    <h1>High-Stakes Products,<br/><em>Zero Margin</em> for Error</h1>
+    <p class="hero-bio">
+      I build where accuracy is non-negotiable — manufacturing operations, government security, and SaaS infrastructure. My background in business analysis means I don't just define requirements; I close the gap between complex systems and the humans who depend on them.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Full Lifecycle PM</span>
+      <span class="tag">GovTech</span>
+      <span class="tag">HRMS / SaaS</span>
+      <span class="tag">AI Integration</span>
+      <span class="tag">JIRA Power User</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Flutter</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ CASE STUDY 1 ═ -->
+<section class="section">
+  <div class="page">
+    <p class="section-label"><span class="section-num">I</span>Featured Project</p>
+    <h2>Asakta HRMS — From Manual Chaos<br/>to Operational Precision</h2>
+    <p class="section-sub">Full lifecycle · Manufacturing · AI Integration</p>
+
+    <div class="ps-grid">
+      <div class="ps-block">
+        <h4>The Problem</h4>
+        <p>A manufacturing workforce running on fragmented, manual HR processes. Payroll lived in spreadsheets, attendance in ledgers, and employee queries in the inboxes of an already-burned-out HR team. Every month brought the same errors, the same delays, and the same escalations.</p>
+      </div>
+      <div class="ps-block solution">
+        <h4>The Solution</h4>
+        <p>Led end-to-end delivery of the Asakta HRMS platform — from discovery workshops with HR and finance stakeholders through to production launch. Introduced an <strong>AI-driven FAQ chatbot</strong> to intercept and resolve the high-volume, repetitive queries that were consuming HR bandwidth. The result was a system built for the real workflows, not an idealised version of them.</p>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-cell">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Payroll accuracy<br/>0 discrepancies at close</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Attendance record<br/>accuracy, automated</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">6–8 hrs</div>
+        <div class="metric-label">Administrative time<br/>recovered per day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ CASE STUDY 2 ═ -->
+<section class="section">
+  <div class="page">
+    <p class="section-label"><span class="section-num">II</span>GovTech Initiative</p>
+    <h2>The Strong Room — Closing a Security<br/>Loophole at the Source</h2>
+    <p class="section-sub">Security architecture · Compliance · Access control</p>
+
+    <div class="security-summary">
+      The Strong Room module managed access to high-value government assets. The critical vulnerability was structural: the existing authentication flow had no defined protocol for unverified individuals. An unknown actor could reach the point of access with no mandatory secondary check in place. The system assumed good actors — a dangerous assumption in any high-stakes environment.
+    </div>
+
+    <div class="intervention-grid">
+      <div class="intervention-card">
+        <h4>Product Intervention</h4>
+        <p>Designed a <strong>Conditional Authentication Gate</strong> that activates when an individual cannot be verified through primary identification channels. Rather than allowing the process to continue or terminate without a record, the gate routes the event to a mandatory secondary path.</p>
+      </div>
+      <div class="intervention-card">
+        <h4>The "Other" Protocol</h4>
+        <p>Introduced a Treasurer-level <strong>"Other" Identification Protocol</strong>: any unverified actor triggers a manual logging requirement — name, purpose, and timestamp — that must be completed and approved <em>before</em> access is granted. No approval without a record. No access without approval.</p>
+      </div>
+    </div>
+
+    <div class="result-banner">
+      Outcome: 100% secure, fully auditable access. Every access event is attributable. The loophole is structurally closed, not patched.
+    </div>
+
+    <!-- ── Side-by-side flow: Before vs After ── -->
+    <div class="flow-wrap">
+      <div class="flow-col flow-col--before">
+        <div class="flow-col-label flow-col-label--bad">Before — The Loophole</div>
+
+        <div class="flow-node flow-node--start">Actor Requests Access</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Primary ID Check</div>
+        <div class="flow-arrow flow-arrow--branch">↓ &nbsp; Unverified?</div>
+        <div class="flow-node flow-node--danger">⚠ No Protocol Defined</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node flow-node--bad-end">Access Granted<br/><span>No record. No audit trail.</span></div>
+      </div>
+
+      <div class="flow-divider">
+        <div class="flow-divider-line"></div>
+        <div class="flow-divider-badge">vs</div>
+        <div class="flow-divider-line"></div>
+      </div>
+
+      <div class="flow-col flow-col--after">
+        <div class="flow-col-label flow-col-label--good">After — The Fix</div>
+
+        <div class="flow-node flow-node--start">Actor Requests Access</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node">Primary ID Check</div>
+        <div class="flow-arrow flow-arrow--branch">↓ &nbsp; Unverified?</div>
+        <div class="flow-node flow-node--gate">🔒 Conditional Auth Gate<br/><span>Treasurer notified</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node flow-node--log">"Other" Protocol Triggered<br/><span>Name · Purpose · Timestamp logged</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-diamond">
+          <span>Treasurer<br/>Approves?</span>
+        </div>
+        <div class="flow-branch-row">
+          <div class="flow-branch-no">
+            <div class="flow-branch-label">No</div>
+            <div class="flow-node flow-node--deny">Access Denied<br/><span>Attempt recorded</span></div>
+          </div>
+          <div class="flow-branch-yes">
+            <div class="flow-branch-label">Yes</div>
+            <div class="flow-node flow-node--good-end">Access Granted<br/><span>Fully auditable</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ PHILOSOPHY ═ -->
+<section class="section">
+  <div class="page">
+    <p class="section-label"><span class="section-num">III</span>Product Philosophy</p>
+    <h2>How I Think About Products</h2>
+    <p class="section-sub">Three principles that shape every decision from discovery to delivery</p>
+
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <h3>Accuracy as a Feature</h3>
+        <p>In trust-based systems — payroll, security, compliance — accuracy isn't a quality bar. It's the product. A single discrepancy erodes the trust the entire system is built on. I design for correctness first.</p>
+      </div>
+      <div class="phil-card">
+        <h3>Design for the Exception</h3>
+        <p>The "Happy Path" is the easy part. Real products fail at the edges — the unverified actor, the missing record, the edge case nobody mapped. I treat exceptions as first-class requirements, not afterthoughts.</p>
+      </div>
+      <div class="phil-card">
+        <h3>The Augmented PM</h3>
+        <p>Leveraging AI and technical depth — SQL, code, system architecture — isn't a bonus skill. It's how I compress the distance between what stakeholders need and what engineering can build, faster and with less ambiguity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SPRINT ═════ -->
+<section class="section">
+  <div class="page">
+    <p class="section-label"><span class="section-num">IV</span>Current Sprint</p>
+    <h2>What I'm Building Right Now</h2>
+    <p class="section-sub">Continuous learning — applied, not passive</p>
+
+    <div class="sprint-grid">
+      <div class="sprint-items">
+        <div class="sprint-item">
+          <span class="sprint-icon">🚀</span>
+          <div>
+            <h4>WalkWise — Flutter / Agentic Development</h4>
+            <p>Building a full product from scratch using Flutter and agentic development patterns. This is product and engineering at once — writing code, defining behaviour, and managing the build as both PM and developer.</p>
+          </div>
+        </div>
+        <div class="sprint-item">
+          <span class="sprint-icon">🧠</span>
+          <div>
+            <h4>AI Architecture — SME-Level System Design</h4>
+            <p>Moving beyond prompting into architecture: how AI components fit into production systems, where they fail, how they scale. The goal is SME-level understanding — enough to make real build vs. integrate decisions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="arsenal-card">
+        <h4>Technical Arsenal</h4>
+        <ul class="arsenal-list">
+          <li>JIRA — Power User &amp; process design</li>
+          <li>SQL — data queries &amp; product analysis</li>
+          <li>Flutter — active project development</li>
+          <li>AI Strategy — workflow integration</li>
+          <li>Systems thinking &amp; edge-case mapping</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER ════ -->
+<footer class="page">
+  <p>Available for senior PM and product strategy roles.</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/harsha-iragavarapu-a46795205/">LinkedIn</a>
+    <a href="https://drive.google.com/file/d/1yQipn42GxBGQPeFOb3wxpg5jmasm0VDp/view?usp=drive_link">Resume</a>
+    <a href="mailto:iragavarapu.harsha99@yahoo.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
